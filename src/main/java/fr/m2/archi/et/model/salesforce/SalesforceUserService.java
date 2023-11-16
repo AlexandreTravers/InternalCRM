@@ -20,6 +20,17 @@ public class SalesforceUserService {
 	private static final String USERNAME = "alexandretvs@univ-angers.fr";
 	private static final String PASSWORD = "*LePlusGrandMDPJamaisVueAvant2023*";
 	
+	private static SalesforceUserService instance;
+	
+	private SalesforceUserService() {}
+	
+	public static SalesforceUserService getInstance() {
+		if(instance == null) {
+			instance = new SalesforceUserService();
+		}
+		return instance;
+	}
+	
 	private String getAccessToken() {
 		String requestBody = "grant_type=password"
 				+ "&client_id=" + KEY
@@ -39,7 +50,7 @@ public class SalesforceUserService {
         
         try {
         	response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("Réponse de l'authentification : " + response.body());
+            //System.out.println("Réponse de l'authentification : " + response.body());
             
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(response.body());
@@ -52,13 +63,13 @@ public class SalesforceUserService {
         return accessToken;
 	}
 	
-	private Object getUsersInformationsInJSON() {
+	private JsonNode getAllUsersInformationsInJSON() {
 		String accessToken = this.getAccessToken();
         String apiUrl = DOMAIN_NAME + "/services/data/v59.0/query/?q=SELECT+FirstName,LastName,annualRevenue__c,Phone,Address,PostalCode,Country,CreatedDate,CompanyName+FROM+User";
 		
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response;
-        Object jsonObject = null;
+        JsonNode jsonObject = null;
 		try {
 			HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(apiUrl))
@@ -67,11 +78,11 @@ public class SalesforceUserService {
                     .build();
             
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("Réponse de la requête : " + response.body());
+            //System.out.println("Réponse de la requête : " + response.body());
             
             ObjectMapper objectMapper = new ObjectMapper();
 
-            jsonObject = objectMapper.readValue(response.body(), Object.class);
+            jsonObject = objectMapper.readValue(response.body(), JsonNode.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,9 +91,30 @@ public class SalesforceUserService {
 	}
 	
 	public List<SalesforceLeadDto> getUsersInformations() {
-		Object jsonObject = this.getUsersInformationsInJSON();
+		JsonNode jsonObject = this.getAllUsersInformationsInJSON();
 		List<SalesforceLeadDto> listInformations = new ArrayList<SalesforceLeadDto>();
+
 		
+		if (jsonObject.has("records") && jsonObject.get("records").isArray()) {
+		    JsonNode records = jsonObject.get("records");
+            for (JsonNode record : records) {
+                String firstName = record.get("FirstName").asText();
+                String lastName = record.get("LastName").asText();
+                double annualRevenue = record.get("annualRevenue__c").asDouble();
+                String phone = record.get("Phone").asText();
+
+                JsonNode address = record.get("Address");
+                String street = address.get("street").asText();
+                String postalCode = address.get("postalCode").asText();
+                String city = address.get("city").asText();
+                String country = address.get("country").asText();
+                String state = address.get("state").asText();
+
+                String creationDate = record.get("CreatedDate").asText();
+                String company = record.get("CompanyName").asText();
+                listInformations.add(new SalesforceLeadDto(new SalesforceUserModel(firstName, lastName, annualRevenue, phone, street, postalCode, city, country, creationDate, company, state)));
+            }
+        }
 		
 		return listInformations;
 	}

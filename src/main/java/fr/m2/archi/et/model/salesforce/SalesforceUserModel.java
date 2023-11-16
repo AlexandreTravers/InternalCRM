@@ -7,22 +7,29 @@ public class SalesforceUserModel {
 	private String phone;
 	private String street;
 	private String postalCode;
+	private String city;
 	private String country;
 	private String creationDate;
 	private String company;
 	private String state;
 	
-	public SalesforceUserModel(String firstName, String lastName, double annualRevenue, String phone, String street, String postalCode, String country, String creationDate, String company, String state) {
+	public SalesforceUserModel(String firstName, String lastName, double annualRevenue, String phone, String street, String postalCode, String city, String country, String creationDate, String company, String state) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.annualRevenue = annualRevenue;
 		this.phone = phone;
 		this.street = street;
 		this.postalCode = postalCode;
+		this.city = city;
 		this.country = country;
 		this.creationDate = creationDate;
 		this.company = company;
 		this.state = state;
+	}
+	
+	@Override
+	public String toString() {
+		return firstName + " - " + lastName + " - " + annualRevenue + " - " + phone + " - " + street + " - " + postalCode + " - " + city + " - " + country + " - " + creationDate + " - " + company + " - " + state; 
 	}
 
 	public String getFirstName() {
@@ -47,6 +54,10 @@ public class SalesforceUserModel {
 
 	public String getPostalCode() {
 		return postalCode;
+	}
+	
+	public String getCity() {
+		return city;
 	}
 
 	public String getCountry() {

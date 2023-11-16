@@ -10,4 +10,9 @@ public class SalesforceLeadDto {
 	public SalesforceUserModel getInformations() {
 		return this.informations;
 	}
+	
+	@Override
+	public String toString() {
+		return this.informations.toString();
+	}
 }

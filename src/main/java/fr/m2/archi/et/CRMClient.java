@@ -30,11 +30,13 @@ public class CRMClient {
             TProtocol protocol = new TBinaryProtocol(transport);
             InternalCRMService.Client client = new InternalCRMService.Client(protocol);
 
-            double lowAnnualRevenue = 10000.0;
-            double highAnnualRevenue = 50000.0;
+            double lowAnnualRevenue = 0.0;
+            double highAnnualRevenue = 1000000.0;
             String state = "New York";
 
             List<InternalLeadDto> leads = client.findLeads(lowAnnualRevenue, highAnnualRevenue, state);
+            
+            System.out.println("Résultats : ");
 
             for (InternalLeadDto lead : leads) {
                 ModelITO leadInfo = lead.getInformations();

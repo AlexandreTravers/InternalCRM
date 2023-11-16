@@ -1,19 +1,37 @@
-firstName,lastName,annualRevenue,phone,street,postalCode,country,creationDate,company,state
-John,Doe,100000.0,555-1234,123 Main St,12345,USA,2022-10-15,ABC Inc,California
-Jane,Smith,75000.0,555-5678,456 Oak St,67890,Canada,2022-09-20,XYZ Ltd,Ontario
-Bob,Johnson,120000.0,555-9876,789 Elm St,54321,UK,2022-08-25,DEF Corp,England
-Alice,Williams,85000.0,555-2345,234 Birch St,23456,USA,2022-07-30,GHI Ltd,New York
-Michael,Jones,110000.0,555-6789,567 Pine St,78901,Canada,2022-06-10,JKL Inc,British Columbia
-Emily,Brown,95000.0,555-3456,345 Cedar St,34567,USA,2022-05-15,MNO Corp,Texas
-David,Lee,80000.0,555-7890,890 Maple St,89012,UK,2022-04-20,PQR Ltd,Scotland
-Sarah,Clark,70000.0,555-4567,678 Spruce St,67890,Canada,2022-03-25,STU Inc,Ontario
-James,Young,130000.0,555-8901,901 Pine St,90123,USA,2022-02-10,VWX Corp,California
-Laura,Johnson,90000.0,555-2345,234 Birch St,23456,USA,2022-01-15,YZA Ltd,New York
-Daniel,Smith,115000.0,555-6789,567 Pine St,78901,Canada,2021-12-30,BAC Inc,British Columbia
-Sophia,Chang,82000.0,555-3456,345 Cedar St,34567,USA,2021-11-05,CDE Corp,Texas
-Matthew,Miller,98000.0,555-7890,890 Maple St,89012,UK,2021-10-10,EFG Ltd,Scotland
-Olivia,White,76000.0,555-4567,678 Spruce St,67890,Canada,2021-09-15,GHI Inc,Ontario
-Ethan,Kim,105000.0,555-8901,901 Pine St,90123,USA,2021-08-20,IJK Ltd,California
-Ava,Nguyen,88000.0,555-2345,234 Birch St,23456,USA,2021-07-25,KLM Inc,New York
-Liam,Brown,99000.0,555-6789,567 Pine St,78901,Canada,2021-06-30,MNO Corp,British Columbia
-Emma,Lee,74000.0,555-3456,345 Cedar St,34567,USA,2021-05-05,PQR Corp,Texas
+firstName,lastName,annualRevenue,phone,street,postalCode,city,country,creationDate,company,state
+John,Doe,75000,555-1234,123 Main Street,10001,New York,USA,2023-01-01,ABC Inc,New York
+Jane,Smith,60000,555-5678,456 Oak Avenue,20002,Washington,USA,2023-02-15,XYZ Corp,Washington
+Michael,Johnson,90000,555-9876,789 Pine Lane,30301,Atlanta,USA,2023-03-20,123 Co,Georgia
+Emily,Williams,80000,555-4321,101 Maple Drive,60601,Chicago,USA,2023-04-10,456 Ltd,Illinois
+Daniel,Brown,70000,555-8765,202 Cedar Street,90001,Los Angeles,USA,2023-05-05,789 Enterprises,California
+Sophia,Miller,85000,555-2345,303 Elm Road,75201,Dallas,USA,2023-06-12,ABC Ltd,Texas
+David,Davis,95000,555-8765,404 Birch Avenue,94102,San Francisco,USA,2023-07-18,XYZ Industries,California
+Olivia,Anderson,72000,555-3456,505 Oak Lane,33101,Miami,USA,2023-08-22,123 Corp,Florida
+Matthew,Moore,88000,555-6543,606 Pine Street,98101,Seattle,USA,2023-09-30,456 Ventures,Washington
+Emma,Thomas,76000,555-2345,707 Cedar Avenue,80202,Denver,USA,2023-10-15,789 Holdings,Colorado
+William,White,92000,555-8765,808 Maple Drive,97201,Portland,USA,2023-11-25,ABC Group,Oregon
+Ava,Jackson,68000,555-7890,909 Elm Road,85001,Phoenix,USA,2023-12-05,XYZ Ltd,Arizona
+Sophie,Martin,78000,555-1234,124 Oak Street,10021,New York,USA,2023-01-02,ABC Inc,New York
+Alexander,Johnson,62000,555-5678,457 Pine Avenue,20012,Washington,USA,2023-02-16,XYZ Corp,Washington
+Isabella,Brown,91000,555-9876,790 Cedar Lane,30302,Atlanta,USA,2023-03-21,123 Co,Georgia
+Oliver,Smith,82000,555-4321,102 Maple Drive,60602,Chicago,USA,2023-04-11,456 Ltd,Illinois
+Charlotte,Davis,71000,555-8765,203 Birch Road,90002,Los Angeles,USA,2023-05-06,789 Enterprises,California
+Mia,Miller,86000,555-2345,304 Elm Lane,75202,Dallas,USA,2023-06-13,ABC Ltd,Texas
+Liam,Williams,96000,555-8765,405 Pine Avenue,94103,San Francisco,USA,2023-07-19,XYZ Industries,California
+Noah,Johnson,73000,555-3456,506 Oak Drive,33102,Miami,USA,2023-08-23,123 Corp,Florida
+Emma,Moore,89000,555-6543,607 Cedar Lane,98102,Seattle,USA,2023-09-30,456 Ventures,Washington
+Ava,Thomas,77000,555-2345,708 Pine Street,80203,Denver,USA,2023-10-16,789 Holdings,Colorado
+Lucas,White,93000,555-8765,809 Maple Avenue,97202,Portland,USA,2023-11-26,ABC Group,Oregon
+Lily,Jackson,69000,555-7890,910 Elm Drive,85002,Phoenix,USA,2023-12-06,XYZ Ltd,Arizona
+Ethan,Anderson,74000,555-1234,125 Pine Drive,10031,New York,USA,2023-01-03,ABC Inc,New York
+Olivia,Davis,63000,555-5678,458 Cedar Road,20022,Washington,USA,2023-02-17,XYZ Corp,Washington
+Logan,Smith,92000,555-9876,791 Elm Lane,30303,Atlanta,USA,2023-03-22,123 Co,Georgia
+Aria,Johnson,83000,555-4321,103 Birch Drive,60603,Chicago,USA,2023-04-12,456 Ltd,Illinois
+Jackson,Brown,72000,555-8765,204 Maple Lane,90003,Los Angeles,USA,2023-05-07,789 Enterprises,California
+Sophia,Miller,87000,555-2345,305 Oak Road,75203,Dallas,USA,2023-06-14,ABC Ltd,Texas
+Liam,Williams,97000,555-8765,406 Cedar Avenue,94104,San Francisco,USA,2023-07-20,XYZ Industries,California
+Ava,Johnson,74000,555-3456,507 Pine Drive,33103,Miami,USA,2023-08-24,123 Corp,Florida
+Lucas,Moore,90000,555-6543,608 Elm Lane,98103,Seattle,USA,2023-09-30,456 Ventures,Washington
+Ella,Thomas,78000,555-2345,709 Pine Road,80204,Denver,USA,2023-10-17,789 Holdings,Colorado
+Liam,White,94000,555-8765,810 Maple Drive,97203,Portland,USA,2023-11-27,ABC Group,Oregon
+Avery,Jackson,70000,555-7890,911 Cedar Lane,85003,Phoenix,USA,2023-12-07,XYZ Ltd,Arizona

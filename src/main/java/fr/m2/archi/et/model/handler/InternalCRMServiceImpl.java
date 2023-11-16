@@ -20,8 +20,6 @@ public class InternalCRMServiceImpl implements InternalCRMService.Iface {
     public InternalCRMServiceImpl() {
         leadData = CsvReader.readCSVFile("data.csv");
     }
-	
-	
 
 	@Override
 	public List<InternalLeadDto> findLeads(double lowAnnualRevenue, double highAnnualRevenue, String state)
