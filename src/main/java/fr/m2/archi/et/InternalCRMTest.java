@@ -20,7 +20,7 @@ import fr.m2.archi.et.model.thrift.ModelITO;
  *  Penser à delete au rendu final /!\
  */
 
-public class CRMClient {
+public class InternalCRMTest {
 
     public static void main(String[] args) {
         try {

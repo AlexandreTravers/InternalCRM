@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +14,12 @@ import fr.m2.archi.et.client.CRMThriftClient;
 import fr.m2.archi.et.model.thrift.InternalLeadDto;
 
 @RestController
+@RequestMapping("/api")
 public class InternalCRMController {
 	@Autowired
     private CRMThriftClient crmClient;
 
-    @GetMapping("/internalLeadsWithGet")
+    @GetMapping("/getLeadsWithGet")
     public List<InternalLeadDto> getLeads(
             @RequestParam double lowAnnualRevenue,
             @RequestParam double highAnnualRevenue,
@@ -25,7 +27,7 @@ public class InternalCRMController {
         return crmClient.findLeads(lowAnnualRevenue, highAnnualRevenue, state);
     }
     
-    @PostMapping("/internalLeads")
+    @PostMapping("/getLeads")
     public List<InternalLeadDto> getLeads(
     		@RequestBody JsonRequestForLeads request) {
     	return crmClient.findLeads(request.getLowAnnualRevenue(), request.getHighAnnualRevenue(), request.getState());
