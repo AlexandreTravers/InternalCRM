@@ -13,9 +13,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CRMThriftClient implements CRMClientService {
+public class CRMThriftClient {
 
-    @Override
     public List<InternalLeadDto> findLeads(double lowAnnualRevenue, double highAnnualRevenue, String state) {
         try {
             TTransport transport = new TSocket("localhost", 9090);
