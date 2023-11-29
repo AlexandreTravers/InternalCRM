@@ -14,11 +14,18 @@ import fr.m2.archi.et.model.thrift.ModelITO;
 @Service
 public class InternalCRMServiceImpl implements InternalCRMService.Iface {
 	
-	//EXEMPLE FACTICE LE TEMPS DE
 	private List<InternalLeadDto> leadData;
+	private static InternalCRMServiceImpl internalCRMServiceImpl;
 
-    public InternalCRMServiceImpl() {
+    private InternalCRMServiceImpl() {
         leadData = CsvReader.readCSVFile("data.csv");
+    }
+    
+    public static InternalCRMServiceImpl getInstance() {
+    	if(internalCRMServiceImpl == null) {
+    		internalCRMServiceImpl = new InternalCRMServiceImpl();
+    	}
+    	return internalCRMServiceImpl;
     }
 
 	@Override
