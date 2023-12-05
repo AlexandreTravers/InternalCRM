@@ -40,7 +40,7 @@ public class InternalCRMTest {
 
             for (InternalLeadDto lead : leads) {
                 ModelITO leadInfo = lead.getInformations();
-                System.out.println("Lead: " + leadInfo.getFirstName() + " " + leadInfo.getLastName());
+                System.out.println("Lead: " + leadInfo.getName() + " " + leadInfo.getName());
             }
 
             transport.close();
