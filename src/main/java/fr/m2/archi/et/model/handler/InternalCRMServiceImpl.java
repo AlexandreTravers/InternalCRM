@@ -1,5 +1,6 @@
 package fr.m2.archi.et.model.handler;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,20 +49,56 @@ public class InternalCRMServiceImpl implements InternalCRMService.Iface {
 
 	@Override
 	public List<InternalLeadDto> findLeadsByDate(String startDate, String endDate) throws TException {
-		// TODO Auto-generated method stub
-		return null;
+		List<InternalLeadDto> leads = new ArrayList<InternalLeadDto>();
+		
+		for(InternalLeadDto lead : leadData) {
+			ModelITO info = lead.getInformations();
+			String[] date = info.getCreationDate().split("-");
+			String[] startDateSplit = startDate.split("-");
+			String[] endDateSplit = endDate.split("-");
+
+			int[] intDate = new int[date.length]; int[] intStartDate = new int[startDateSplit.length]; int[] intEndDate = new int[endDateSplit.length];
+
+			//1 = Année, 2 = Mois, 3 = Jours
+			for (int i = 0; i < date.length; i++) {
+			    intDate[i] = Integer.parseInt(date[i]);
+			    intStartDate[i] = Integer.parseInt(startDateSplit[i]);
+			    intEndDate[i] = Integer.parseInt(endDateSplit[i]);
+			}
+			
+	        LocalDate startDatef = LocalDate.of(intStartDate[0], intStartDate[1], intStartDate[2]);
+	        LocalDate endDatef = LocalDate.of(intEndDate[0], intEndDate[1], intEndDate[2]);
+
+	        // Dates to check
+	        LocalDate userDate = LocalDate.of(intDate[0], intDate[1], intDate[2]);
+
+	        if(!userDate.isBefore(startDatef) && !userDate.isAfter(endDatef)) {
+	        	leads.add(lead);
+	        }
+		}
+		
+		return leads;
 	}
 
 	@Override
-	public void deleteLead(InternalLeadDto lead) throws TException {
-		// TODO Auto-generated method stub
+	public void deleteLead(String phoneNumber) throws TException {
+		for(int i = 0; i < leadData.size(); i++) {
+			if(leadData.get(i).getInformations().getPhone().equals(phoneNumber)) {
+				leadData.remove(i);
+				break;
+			}
+		}
 		
 	}
 
 	@Override
-	public void addLead(InternalLeadDto leadDto) throws TException {
-		// TODO Auto-generated method stub
-		
+	public void addLead(InternalLeadDto lead) throws TException {
+		leadData.add(lead);
+	}
+
+	@Override
+	public List<InternalLeadDto> getUsers() throws TException {
+		return leadData;
 	}
 
 }
