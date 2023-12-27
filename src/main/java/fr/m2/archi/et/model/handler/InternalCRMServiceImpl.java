@@ -50,12 +50,15 @@ public class InternalCRMServiceImpl implements InternalCRMService.Iface {
 	@Override
 	public List<InternalLeadDto> findLeadsByDate(String startDate, String endDate) throws TException {
 		List<InternalLeadDto> leads = new ArrayList<InternalLeadDto>();
-		
+
+		String newStartDate = startDate.substring(0, startDate.indexOf('T'));
+		String newEndDate = endDate.substring(0, endDate.indexOf('T'));
+
 		for(InternalLeadDto lead : leadData) {
 			ModelITO info = lead.getInformations();
 			String[] date = info.getCreationDate().split("-");
-			String[] startDateSplit = startDate.split("-");
-			String[] endDateSplit = endDate.split("-");
+			String[] startDateSplit = newStartDate.split("-");
+			String[] endDateSplit = newEndDate.split("-");
 
 			int[] intDate = new int[date.length]; int[] intStartDate = new int[startDateSplit.length]; int[] intEndDate = new int[endDateSplit.length];
 
