@@ -1,8 +1,12 @@
 package fr.m2.archi.et.model.handler;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.thrift.TException;
 import org.springframework.stereotype.Service;
@@ -97,6 +101,31 @@ public class InternalCRMServiceImpl implements InternalCRMService.Iface {
 	@Override
 	public void addLead(InternalLeadDto lead) throws TException {
 		leadData.add(lead);
+		String[] leadToAddToCsv =
+				{
+						lead.informations.getName(),
+				  		"" + lead.informations.getAnnualRevenue(),
+				  		lead.informations.getPhone(),
+						lead.informations.getStreet(),
+						lead.informations.getPostalCode(),
+						lead.informations.getCity(),
+						lead.informations.getCountry(),
+						lead.informations.getCreationDate(),
+						lead.informations.getCompany(),
+						lead.informations.getState()
+				};
+
+		String leadToAddToCsvToString = String.join(",", leadToAddToCsv);
+
+		File csvOutputFile = new File("data.csv");
+		try(PrintWriter pw = new PrintWriter(csvOutputFile))
+		{
+			pw.println(leadToAddToCsvToString);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	@Override
