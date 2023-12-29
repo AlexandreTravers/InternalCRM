@@ -1,6 +1,8 @@
 package fr.m2.archi.et.model.handler;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -95,6 +97,11 @@ public class InternalCRMServiceImpl implements InternalCRMService.Iface {
 				break;
 			}
 		}
+        try {
+            CsvReader.processCsvFile("data.csv", phoneNumber);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 		
 	}
 
@@ -103,7 +110,7 @@ public class InternalCRMServiceImpl implements InternalCRMService.Iface {
 		leadData.add(lead);
 		String[] leadToAddToCsv =
 				{
-						lead.informations.getName(),
+						"\"" + lead.informations.getName() + "\"",
 				  		"" + lead.informations.getAnnualRevenue(),
 				  		lead.informations.getPhone(),
 						lead.informations.getStreet(),
@@ -115,16 +122,13 @@ public class InternalCRMServiceImpl implements InternalCRMService.Iface {
 						lead.informations.getState()
 				};
 
-		String leadToAddToCsvToString = String.join(",", leadToAddToCsv);
+		String leadToAddToCsvToString = String.join(";", leadToAddToCsv);
 
 		File csvOutputFile = new File("data.csv");
-		try(PrintWriter pw = new PrintWriter(csvOutputFile))
-		{
-			pw.println(leadToAddToCsvToString);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+		try (PrintWriter pw = new PrintWriter(new FileWriter(csvOutputFile, true))) {
+		    pw.println(leadToAddToCsvToString);
+		} catch (Exception e) {
+		    e.printStackTrace();
 		}
 	}
 

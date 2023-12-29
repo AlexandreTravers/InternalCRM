@@ -1,6 +1,11 @@
 package fr.m2.archi.et.data.reader;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,5 +57,38 @@ public class CsvReader {
         }
 
         return instances;
+    }
+	
+	
+	//Les trois prochaines méthodes : réservé à la supressions d'informations.
+	public static void processCsvFile(String filePath, String informationToFilter) throws IOException {
+        List<String> lines = readAllLines(filePath);
+        List<String> filteredLines = new ArrayList<>();
+        for (String line : lines) {
+            if (!line.contains(informationToFilter)) {
+                filteredLines.add(line);
+            }
+        }
+
+        writeLinesToFile(filePath, filteredLines);
+    }
+
+    private static List<String> readAllLines(String filePath) throws IOException {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);
+            }
+        }
+        return lines;
+    }
+
+    private static void writeLinesToFile(String filePath, List<String> lines) throws IOException {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
+            for (String line : lines) {
+                pw.println(line);
+            }
+        }
     }
 }
